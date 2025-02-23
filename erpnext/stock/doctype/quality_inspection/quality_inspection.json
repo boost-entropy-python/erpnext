@@ -8,8 +8,10 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
   "report_date",
   "status",
+  "child_row_reference",
   "column_break_4",
   "inspection_type",
   "reference_type",
@@ -25,13 +27,16 @@
   "bom_no",
   "specification_details",
   "quality_inspection_template",
+  "manual_inspection",
   "readings",
   "section_break_14",
   "inspected_by",
   "verified_by",
   "column_break_17",
   "remarks",
-  "amended_from"
+  "amended_from",
+  "print_settings_section",
+  "letter_head"
  ],
  "fields": [
   {
@@ -73,7 +78,7 @@
    "fieldname": "reference_type",
    "fieldtype": "Select",
    "label": "Reference Type",
-   "options": "\nPurchase Receipt\nPurchase Invoice\nDelivery Note\nSales Invoice\nStock Entry\nJob Card",
+   "options": "\nPurchase Receipt\nPurchase Invoice\nSubcontracting Receipt\nDelivery Note\nSales Invoice\nStock Entry\nJob Card",
    "reqd": 1
   },
   {
@@ -231,6 +236,41 @@
    "label": "Status",
    "options": "\nAccepted\nRejected",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "manual_inspection",
+   "fieldtype": "Check",
+   "label": "Manual Inspection"
+  },
+  {
+   "fieldname": "child_row_reference",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Child Row Reference",
+   "no_copy": 1,
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "print_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Print Settings"
+  },
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "company.default_letter_head",
+   "fetch_if_empty": 1,
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "label": "Letter Head",
+   "options": "Letter Head"
   }
  ],
  "icon": "fa fa-search",
@@ -238,10 +278,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2020-12-18 19:59:55.710300",
+ "modified": "2025-02-17 13:20:17.583094",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Quality Inspection",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -261,6 +302,7 @@
  ],
  "search_fields": "item_code, report_date, reference_name",
  "show_name_in_global_search": 1,
- "sort_field": "modified",
- "sort_order": "ASC"
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": []
 }

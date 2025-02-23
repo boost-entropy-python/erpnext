@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # See license.txt
-from __future__ import unicode_literals
-
-import frappe
 import unittest
 
-# test_records = frappe.get_test_records('Payment Gateway Account')
+from frappe.tests import IntegrationTestCase
 
-class TestPaymentGatewayAccount(unittest.TestCase):
+IGNORE_TEST_RECORD_DEPENDENCIES = ["Payment Gateway"]
+
+
+class TestPaymentGatewayAccount(IntegrationTestCase):
 	pass
