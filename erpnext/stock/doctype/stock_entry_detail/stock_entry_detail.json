@@ -1,13 +1,14 @@
 {
  "actions": [],
  "autoname": "hash",
- "creation": "2013-03-29 18:22:12",
+ "creation": "2022-02-05 00:17:49.860824",
  "doctype": "DocType",
  "document_type": "Other",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "barcode",
+  "has_item_scanned",
   "section_break_2",
   "s_warehouse",
   "col_break1",
@@ -45,8 +46,13 @@
   "basic_amount",
   "amount",
   "serial_no_batch",
-  "serial_no",
+  "add_serial_batch_bundle",
+  "use_serial_batch_fields",
   "col_break4",
+  "serial_and_batch_bundle",
+  "section_break_rdtg",
+  "serial_no",
+  "column_break_prps",
   "batch_no",
   "accounting",
   "expense_account",
@@ -67,6 +73,7 @@
   "against_stock_entry",
   "ste_detail",
   "po_detail",
+  "sco_rm_detail",
   "putaway_rule",
   "column_break_51",
   "reference_purchase_receipt",
@@ -232,6 +239,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "conversion_factor",
    "fieldtype": "Float",
    "label": "Conversion Factor",
@@ -241,6 +249,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "stock_uom",
    "fieldtype": "Link",
    "label": "Stock UOM",
@@ -252,6 +261,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.uom != doc.stock_uom",
    "fieldname": "transfer_qty",
    "fieldtype": "Float",
    "label": "Qty as per Stock UOM",
@@ -282,8 +292,9 @@
    "no_copy": 1
   },
   {
+   "depends_on": "eval:doc.use_serial_batch_fields === 1",
    "fieldname": "serial_no",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text",
    "label": "Serial No",
    "no_copy": 1,
    "oldfieldname": "serial_no",
@@ -294,6 +305,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.use_serial_batch_fields === 1",
    "fieldname": "batch_no",
    "fieldtype": "Link",
    "label": "Batch No",
@@ -307,6 +319,7 @@
    "fieldname": "quality_inspection",
    "fieldtype": "Link",
    "label": "Quality Inspection",
+   "no_copy": 1,
    "options": "Quality Inspection"
   },
   {
@@ -338,13 +351,13 @@
    "label": "More Information"
   },
   {
-   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "allow_zero_valuation_rate",
    "fieldtype": "Check",
    "label": "Allow Zero Valuation Rate",
    "no_copy": 1,
-   "print_hide": 1
+   "print_hide": 1,
+   "read_only_depends_on": "eval:doc.s_warehouse"
   },
   {
    "allow_on_submit": 1,
@@ -389,7 +402,8 @@
    "no_copy": 1,
    "options": "Material Request",
    "print_hide": 1,
-   "read_only": 1
+   "read_only": 1,
+   "search_index": 1
   },
   {
    "fieldname": "material_request_item",
@@ -492,6 +506,15 @@
    "read_only": 1
   },
   {
+   "fieldname": "sco_rm_detail",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "SCO Supplied Item",
+   "no_copy": 1,
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
    "default": "0",
    "depends_on": "eval:parent.purpose===\"Repack\" && doc.t_warehouse",
    "fieldname": "set_basic_rate_manually",
@@ -541,19 +564,60 @@
    "label": "Job Card Item",
    "no_copy": 1,
    "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "barcode",
+   "fieldname": "has_item_scanned",
+   "fieldtype": "Check",
+   "label": "Has Item Scanned",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.use_serial_batch_fields === 0",
+   "fieldname": "add_serial_batch_bundle",
+   "fieldtype": "Button",
+   "label": "Add Serial / Batch No"
+  },
+  {
+   "depends_on": "eval:doc.use_serial_batch_fields === 0 || doc.docstatus === 1",
+   "fieldname": "serial_and_batch_bundle",
+   "fieldtype": "Link",
+   "label": "Serial and Batch Bundle",
+   "no_copy": 1,
+   "options": "Serial and Batch Bundle",
+   "print_hide": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "use_serial_batch_fields",
+   "fieldtype": "Check",
+   "label": "Use Serial No / Batch Fields"
+  },
+  {
+   "depends_on": "eval:doc.use_serial_batch_fields === 1",
+   "fieldname": "section_break_rdtg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_prps",
+   "fieldtype": "Column Break"
   }
  ],
  "idx": 1,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-04-22 20:08:23.799715",
+ "modified": "2024-03-27 13:10:44.056282",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Entry Detail",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [],
- "sort_field": "modified",
- "sort_order": "ASC"
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": []
 }
