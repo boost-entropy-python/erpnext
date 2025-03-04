@@ -102,11 +102,10 @@
   }
  ],
  "links": [],
- "modified": "2020-01-28 16:16:45.447213",
+ "modified": "2024-03-27 13:05:59.300573",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Appointment",
- "name_case": "UPPER CASE",
  "owner": "Administrator",
  "permissions": [
   {
@@ -120,16 +119,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Guest",
-   "share": 1
   },
   {
    "create": 1,
@@ -153,10 +142,23 @@
    "role": "Sales User",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
   }
  ],
  "quick_entry": 1,
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

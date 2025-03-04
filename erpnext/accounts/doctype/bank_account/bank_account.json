@@ -13,6 +13,7 @@
   "account_type",
   "account_subtype",
   "column_break_7",
+  "disabled",
   "is_default",
   "is_company_account",
   "company",
@@ -27,7 +28,6 @@
   "bank_account_no",
   "address_and_contact",
   "address_html",
-  "website",
   "column_break_13",
   "contact_html",
   "integration_details_section",
@@ -157,11 +157,6 @@
    "label": "Address HTML"
   },
   {
-   "fieldname": "website",
-   "fieldtype": "Data",
-   "label": "Website"
-  },
-  {
    "fieldname": "column_break_13",
    "fieldtype": "Column Break"
   },
@@ -205,10 +200,57 @@
    "fieldtype": "Data",
    "in_global_search": 1,
    "label": "Branch Code"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
   }
  ],
- "links": [],
- "modified": "2020-10-23 16:48:06.303658",
+ "links": [
+  {
+   "group": "Transactions",
+   "link_doctype": "Payment Request",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Payment Order",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Bank Guarantee",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Bank Transaction",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Accounting",
+   "link_doctype": "Payment Entry",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Accounting",
+   "link_doctype": "Journal Entry",
+   "link_fieldname": "bank_account"
+  },
+  {
+   "group": "Party",
+   "link_doctype": "Customer",
+   "link_fieldname": "default_bank_account"
+  },
+  {
+   "group": "Party",
+   "link_doctype": "Supplier",
+   "link_fieldname": "default_bank_account"
+  }
+ ],
+ "modified": "2024-10-30 09:41:14.113414",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Bank Account",
@@ -241,7 +283,8 @@
   }
  ],
  "search_fields": "bank,account",
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

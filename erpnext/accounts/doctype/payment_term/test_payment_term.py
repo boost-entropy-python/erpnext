@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright (c) 2017, Frappe Technologies Pvt. Ltd. and Contributors
 # See license.txt
-from __future__ import unicode_literals
 import unittest
 
+from frappe.tests import IntegrationTestCase
 
-class TestPaymentTerm(unittest.TestCase):
+
+class TestPaymentTerm(IntegrationTestCase):
 	pass

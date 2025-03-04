@@ -3,6 +3,7 @@
  "allow_copy": 1,
  "allow_import": 1,
  "creation": "2013-01-23 19:57:17",
+ "default_view": "Tree",
  "description": "Track separate Income and Expense for product verticals or divisions.",
  "doctype": "DocType",
  "document_type": "Setup",
@@ -16,9 +17,6 @@
   "cb0",
   "is_group",
   "disabled",
-  "section_break_9",
-  "enable_distributed_cost_center",
-  "distributed_cost_center",
   "lft",
   "rgt",
   "old_parent"
@@ -44,7 +42,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Cost Center Number",
-   "read_only": 1
+   "read_only_depends_on": "eval:!doc.__islocal"
   },
   {
    "fieldname": "parent_cost_center",
@@ -122,31 +120,13 @@
    "fieldname": "disabled",
    "fieldtype": "Check",
    "label": "Disabled"
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_distributed_cost_center",
-   "fieldtype": "Check",
-   "label": "Enable Distributed Cost Center"
-  },
-  {
-   "depends_on": "eval:doc.is_group==0",
-   "fieldname": "section_break_9",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "enable_distributed_cost_center",
-   "fieldname": "distributed_cost_center",
-   "fieldtype": "Table",
-   "label": "Distributed Cost Center",
-   "options": "Distributed Cost Center"
   }
  ],
  "icon": "fa fa-money",
  "idx": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2020-06-17 16:09:30.025214",
+ "modified": "2025-01-22 10:46:42.904001",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Cost Center",
@@ -184,10 +164,20 @@
   {
    "read": 1,
    "role": "Purchase User"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "report": 1,
+   "role": "Employee",
+   "select": 1,
+   "share": 1
   }
  ],
  "search_fields": "parent_cost_center, is_group",
  "show_name_in_global_search": 1,
- "sort_field": "modified",
- "sort_order": "ASC"
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": []
 }

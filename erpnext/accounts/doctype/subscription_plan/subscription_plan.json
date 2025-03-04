@@ -21,7 +21,7 @@
   "column_break_13",
   "billing_interval_count",
   "payment_plan_section",
-  "payment_plan_id",
+  "product_price_id",
   "column_break_16",
   "payment_gateway",
   "accounting_dimensions_section",
@@ -41,7 +41,8 @@
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
-   "options": "Currency"
+   "options": "Currency",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
@@ -75,10 +76,11 @@
    "fieldname": "cost",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Cost"
+   "label": "Cost",
+   "options": "currency"
   },
   {
-   "depends_on": "eval:doc.price_determination==\"Based on price list\"",
+   "depends_on": "eval:doc.price_determination==\"Based On Price List\"",
    "fieldname": "price_list",
    "fieldtype": "Link",
    "label": "Price List",
@@ -115,11 +117,6 @@
    "label": "Payment Plan"
   },
   {
-   "fieldname": "payment_plan_id",
-   "fieldtype": "Data",
-   "label": "Payment Plan"
-  },
-  {
    "fieldname": "column_break_16",
    "fieldtype": "Column Break"
   },
@@ -144,13 +141,19 @@
    "fieldtype": "Link",
    "label": "Cost Center",
    "options": "Cost Center"
+  },
+  {
+   "fieldname": "product_price_id",
+   "fieldtype": "Data",
+   "label": "Product Price ID"
   }
  ],
  "links": [],
- "modified": "2020-06-25 10:53:44.205774",
+ "modified": "2024-03-27 13:10:47.998597",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Subscription Plan",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -190,7 +193,8 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
